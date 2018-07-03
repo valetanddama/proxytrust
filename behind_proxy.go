@@ -1,4 +1,4 @@
-package proxy
+package behind_proxy
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 
 func init() {}
 
-func behindProxy(next http.Handler) http.Handler {
+func detectClientIp(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		remoteAddr := req.RemoteAddr
 		xForwardedFor := req.Header.Get("X-Forwarded-For")
