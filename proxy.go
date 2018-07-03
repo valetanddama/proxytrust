@@ -4,6 +4,8 @@ import (
 	"net/http"
 )
 
+func init() {}
+
 func behindProxy(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		remoteAddr := req.RemoteAddr
