@@ -1,4 +1,4 @@
-# Go: get correct ip of client at proxy server
+# Go lang: get correct ip of client at proxy server
 
 For usage:
 
