@@ -9,3 +9,8 @@ func main() {
 	http.ListenAndServe("localhost:4000", behind_proxy.DetectClientIp(routing))
 }
 ```
+
+And get correct ip:
+```go
+req.RemoteAddr
+```
