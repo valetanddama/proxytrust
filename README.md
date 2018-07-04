@@ -9,7 +9,7 @@ go get github.com/valetanddama/trust-proxy
 ## Description
 Package is suitable for those who need to detect real client ip address if the code is on the server behind non-anonymous proxy or balancer
 
-For detect client ip address we use X-Forwarded-For header and select left-most entry. If the header is empty or invalid then you will get remote address
+For detect client ip address we use X-Forwarded-For header and select left-most entry or use X-Real-IP header. If the headers is empty or invalid then you will get remote address
 
 ## Usage
 ```go

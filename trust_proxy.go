@@ -12,9 +12,12 @@ func TrustProxyClientIp(next http.Handler) http.Handler {
 
 		remoteAddr := req.RemoteAddr
 		xForwardedFor := strings.TrimSpace(strings.Split(req.Header.Get("X-Forwarded-For"), ",")[0])
+		xRealIp := req.Header.Get("X-Real-IP")
 
 		if xForwardedFor != "" && regexp.MustCompile(regexIpPattern).FindString(xForwardedFor) != "" {
 			remoteAddr = xForwardedFor
+		} else if xRealIp != "" && regexp.MustCompile(regexIpPattern).FindString(xRealIp) != "" {
+			remoteAddr = xRealIp
 		}
 
 		req.RemoteAddr = strings.Split(remoteAddr, ":")[0]
