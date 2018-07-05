@@ -28,5 +28,11 @@ func main() {
 
 Now, you can use **req \*http.Request** object, and get client ip address at req.RemoteAddr
 
+## Testing
+```bash
+go test -race -coverprofile=coverage.txt -covermode=atomic
+go test -bench=.
+```
+
 ## Notice
 If you are going to use package for detect client ip address at anonymous proxy or simple server, you should remember than anonymous proxy not set X-Forwarded-For header or user can set X-Forwarded-For header yourself and spoil your data

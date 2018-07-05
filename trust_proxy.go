@@ -2,25 +2,33 @@ package trust_proxy
 
 import (
 	"net/http"
-	"regexp"
 	"strings"
+	"net"
 )
 
 func TrustProxyClientIp(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		regexIpPattern := "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(:[0-9]+)?$"
+		remoteAddr := removePort(req.RemoteAddr)
 
-		remoteAddr := req.RemoteAddr
-		xForwardedFor := strings.TrimSpace(strings.Split(req.Header.Get("X-Forwarded-For"), ",")[0])
-		xRealIp := req.Header.Get("X-Real-IP")
+		if xForwardedFor := req.Header.Get("X-Forwarded-For"); xForwardedFor != "" {
+			xForwardedFor = removePort(strings.TrimSpace(strings.Split(xForwardedFor, ",")[0]))
 
-		if xForwardedFor != "" && regexp.MustCompile(regexIpPattern).FindString(xForwardedFor) != "" {
-			remoteAddr = xForwardedFor
-		} else if xRealIp != "" && regexp.MustCompile(regexIpPattern).FindString(xRealIp) != "" {
-			remoteAddr = xRealIp
+			if xForwardedFor != "" && net.ParseIP(xForwardedFor) != nil {
+				remoteAddr = xForwardedFor
+			}
+		} else if xRealIp := req.Header.Get("X-Real-IP"); xRealIp != "" {
+			xRealIp = removePort(xRealIp)
+
+			if xRealIp != "" && net.ParseIP(xRealIp) != nil {
+				remoteAddr = xRealIp
+			}
 		}
 
-		req.RemoteAddr = strings.Split(remoteAddr, ":")[0]
+		req.RemoteAddr = remoteAddr
 		next.ServeHTTP(res, req)
 	})
+}
+
+func removePort(ip string) string {
+	return strings.Split(ip, ":")[0]
 }
