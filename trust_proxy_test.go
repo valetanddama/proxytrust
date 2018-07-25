@@ -1,9 +1,9 @@
 package trust_proxy
 
 import (
-	"testing"
-	"net/http/httptest"
 	"net/http"
+	"net/http/httptest"
+	"testing"
 )
 
 func TestTrustProxyClientIpWithRemoteAddress(t *testing.T) {
