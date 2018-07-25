@@ -1,9 +1,9 @@
 # Golang: get client ip address behind proxy or balancer
 
-[![Build Status](https://api.travis-ci.org/valetanddama/trust-proxy.svg?branch=master)](https://travis-ci.org/valetanddama/trust-proxy)
-[![GoDoc](https://godoc.org/github.com/valetanddama/trust-proxy?status.svg)](https://godoc.org/github.com/valetanddama/trust-proxy)
-[![Go Report Card](https://goreportcard.com/badge/github.com/valetanddama/trust-proxy)](https://goreportcard.com/report/github.com/valetanddama/trust-proxy)
-[![codecov](https://codecov.io/gh/valetanddama/trust-proxy/branch/master/graph/badge.svg)](https://codecov.io/gh/valetanddama/trust-proxy)
+[![Build Status](https://api.travis-ci.org/valetanddama/proxytrust.svg?branch=master)](https://travis-ci.org/valetanddama/proxytrust)
+[![GoDoc](https://godoc.org/github.com/valetanddama/proxytrust?status.svg)](https://godoc.org/github.com/valetanddama/proxytrust)
+[![Go Report Card](https://goreportcard.com/badge/github.com/valetanddama/proxytrust)](https://goreportcard.com/report/github.com/valetanddama/proxytrust)
+[![codecov](https://codecov.io/gh/valetanddama/proxytrust/branch/master/graph/badge.svg)](https://codecov.io/gh/valetanddama/proxytrust)
 
 ## Installation
 
