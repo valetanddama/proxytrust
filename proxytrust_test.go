@@ -1,4 +1,4 @@
-package trust_proxy
+package proxytrust
 
 import (
 	"net/http"

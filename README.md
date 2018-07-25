@@ -1,4 +1,4 @@
-# Go lang: get client ip address behind proxy or balancer
+# Golang: get client ip address behind proxy or balancer
 
 [![Build Status](https://api.travis-ci.org/valetanddama/trust-proxy.svg?branch=master)](https://travis-ci.org/valetanddama/trust-proxy)
 [![GoDoc](https://godoc.org/github.com/valetanddama/trust-proxy?status.svg)](https://godoc.org/github.com/valetanddama/trust-proxy)
@@ -8,7 +8,7 @@
 ## Installation
 
 ```
-go get github.com/valetanddama/trust-proxy
+go get github.com/valetanddama/proxytrust
 ```
 
 ## Description
@@ -18,11 +18,11 @@ For detect client ip address we use X-Forwarded-For header and select left-most 
 
 ## Usage
 ```go
-import "github.com/valetanddama/trust-proxy"
+import "github.com/valetanddama/proxytrust"
 
 func main() {
     var routing = mux.NewRouter()
-    http.ListenAndServe("localhost:4000", trust_proxy.TrustProxyClientIp(routing))
+    http.ListenAndServe("localhost:4000", proxytrust.TrustProxyClientIp(routing))
 }
 ```
 

@@ -1,4 +1,4 @@
-package trust_proxy
+package proxytrust
 
 import (
 	"net"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-//Detect real client ip address if the code is on the server behind non-anonymous proxy or balancer
+//TrustProxyClientIp detect real client ip address if the code is on the server behind non-anonymous proxy or balancer
 func TrustProxyClientIp(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		remoteAddr := removePort(req.RemoteAddr)
