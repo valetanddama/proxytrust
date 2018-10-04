@@ -12,17 +12,19 @@ go get github.com/valetanddama/proxytrust
 ```
 
 ## Description
-Package is suitable for those who need to detect real client ip address if the code is on the server behind non-anonymous proxy or balancer
+Package is suitable for those who needs to detect real client ip address if the code is on the server behind non-anonymous proxy or balancer
 
-For detect client ip address we use X-Forwarded-For header and select left-most entry or use X-Real-IP header. If the headers is empty or invalid then you will get remote address
+For detect client ip address we use X-Forwarded-For header and select left-most entry or use X-Real-IP header. If the headers are empty or invalid then you will get remote address
 
 ## Usage
 ```go
 import "github.com/valetanddama/proxytrust"
 
 func main() {
-    var routing = mux.NewRouter()
-    http.ListenAndServe("localhost:4000", proxytrust.TrustProxyClientIp(routing))
+	routing := mux.NewRouter()
+    routing = proxytrust.TrustProxyClientIp(routing)
+    
+    http.ListenAndServe("localhost:4000", routing)
 }
 ```
 
