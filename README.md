@@ -21,10 +21,10 @@ For detection client ip address we use X-Forwarded-For header and select left-mo
 import "github.com/valetanddama/proxytrust"
 
 func main() {
-	routing := mux.NewRouter()
-    routing = proxytrust.TrustProxyClientIp(routing)
-    
-    http.ListenAndServe("localhost:4000", routing)
+   routing := mux.NewRouter()
+   routing = proxytrust.TrustProxyClientIp(routing)
+   
+   http.ListenAndServe("localhost:4000", routing)
 }
 ```
 
