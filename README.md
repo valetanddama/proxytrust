@@ -32,9 +32,18 @@ Now, you can use **req \*http.Request** object, and get client ip address at req
 
 ## Testing
 ```bash
-go test -race -coverprofile=coverage.txt -covermode=atomic
-go test -bench=.
+go test -race -coverprofile=coverage.txt -covermode=atomic -count=1
+```
+
+## Benchmarks
+```bash
+go test -benchmem -bench=. -count=1
+
+BenchmarkTrustProxyClientIpWithXForwardedFor-8  5000000  376 ns/op  96 B/op  5 allocs/op
+BenchmarkTrustProxyClientIpWithXRealIP-8        3000000  433 ns/op  96 B/op  5 allocs/op
+BenchmarkTrustProxyClientIpWithRemoteAddress-8  5000000  267 ns/op  64 B/op  3 allocs/op
 ```
 
 ## Notice
 If you are going to use package for detect client ip address at anonymous proxy or simple server, you should remember than anonymous proxy not set X-Forwarded-For header or user can set X-Forwarded-For header yourself and spoil your data
+
